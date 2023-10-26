@@ -7,7 +7,7 @@ abstract class FakeInheritedWidget extends InheritedWidget {
 
   @override
   FakeInheritedElement createElement() {
-    print('InheritedWidget::createElement');
+    print('InheritedWidget.createElement');
     return FakeInheritedElement(this);
   }
 
@@ -18,7 +18,7 @@ abstract class FakeInheritedWidget extends InheritedWidget {
 
 class FakeInheritedElement extends InheritedElement {
   FakeInheritedElement(FakeInheritedWidget super.widget) {
-    print('InheritedElement::created');
+    print('InheritedElement.created');
   }
 
   final Map<Element, Object?> _dependents = HashMap<Element, Object?>();
@@ -34,35 +34,34 @@ class FakeInheritedElement extends InheritedElement {
   @override
   @protected
   Object? getDependencies(Element dependent) {
-    print('InheritedElement::getDependencies');
+    print('InheritedElement.getDependencies');
     return _dependents[dependent];
   }
 
   @override
   @protected
   void setDependencies(Element dependent, Object? value) {
-    print('InheritedElement::setDependencies');
+    print('InheritedElement.setDependencies');
     _dependents[dependent] = value;
   }
 
   @override
   @protected
   void updateDependencies(Element dependent, Object? aspect) {
-    print('InheritedElement::updateDependencies');
-    print('InheritedElement:dependent:$dependent');
+    print('InheritedElement.updateDependencies');
     setDependencies(dependent, null);
   }
 
   @override
   @protected
   void notifyDependent(covariant InheritedWidget oldWidget, Element dependent) {
-    print('InheritedElement::notifyDependent');
+    print('InheritedElement.notifyDependent');
     dependent.didChangeDependencies();
   }
 
   @override
   void updated(InheritedWidget oldWidget) {
-    print('InheritedElement::updated');
+    print('InheritedElement.updated');
     if ((widget as FakeInheritedWidget).updateShouldNotify(oldWidget)) {
       super.updated(oldWidget);
     }
@@ -70,7 +69,7 @@ class FakeInheritedElement extends InheritedElement {
 
   @override
   void notifyClients(InheritedWidget oldWidget) {
-    print('InheritedElement::notifyClients');
+    print('InheritedElement.notifyClients');
     for (final dependent in _dependents.keys) {
       notifyDependent(oldWidget, dependent);
     }

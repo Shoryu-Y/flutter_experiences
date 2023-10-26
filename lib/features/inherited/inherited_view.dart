@@ -6,7 +6,7 @@ class ParentWidget extends StatefulWidget {
 
   @override
   State<ParentWidget> createState() {
-    print('ParentWidget::createState');
+    print('ParentWidget.createState');
     return _ParentWidgetState();
   }
 }
@@ -16,31 +16,31 @@ class _ParentWidgetState extends State<ParentWidget> {
 
   @override
   void initState() {
-    print('ParentWidget::initState');
+    print('ParentWidget.initState');
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    print('ParentWidget::didChangeDependencies');
+    print('ParentWidget.didChangeDependencies');
     super.didChangeDependencies();
   }
 
   @override
   void didUpdateWidget(covariant ParentWidget oldWidget) {
-    print('ParentWidget::didUpdateWidget');
+    print('ParentWidget.didUpdateWidget');
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    print('ParentWidget::dispose');
+    print('ParentWidget.dispose');
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('ParentWidget::build');
+    print('ParentWidget.build');
     return Inherited1(
       count: count,
       child: Scaffold(
@@ -51,9 +51,12 @@ class _ParentWidgetState extends State<ParentWidget> {
           onPressed: () {
             print('PRESSED BUTTON');
             setState(() {
-              count ++;
+              count++;
             });
           },
+          child: const Icon(
+            Icons.add,
+          ),
         ),
       ),
     );
@@ -65,42 +68,43 @@ class ChildWidget extends StatefulWidget {
 
   @override
   State<ChildWidget> createState() {
-    print('ChildWidget::createState');
+    print('ChildWidget.createState');
     return _ChildWidgetState();
   }
 }
 
 class _ChildWidgetState extends State<ChildWidget> {
-
   @override
   void initState() {
-    print('ChildWidget::initState');
+    print('ChildWidget.initState');
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    print('ChildWidget::didChangeDependencies');
+    print('ChildWidget.didChangeDependencies');
     super.didChangeDependencies();
   }
 
   @override
   void didUpdateWidget(covariant ChildWidget oldWidget) {
-    print('ChildWidget::didUpdateWidget');
+    print('ChildWidget.didUpdateWidget');
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    print('ChildWidget::dispose');
+    print('ChildWidget.dispose');
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('ChildWidget::build');
-    // return Text('hoge');
-    return Text(Inherited1.of(context).count.toString());
+    print('ChildWidget.build');
+    return Text(
+      Inherited1.of(context).count.toString(),
+      style: TextStyle(fontSize: 32),
+    );
   }
 }
 
@@ -119,7 +123,7 @@ class Inherited1 extends FakeInheritedWidget {
   @override
   bool updateShouldNotify(Inherited1 oldWidget) {
     final updateShouldNotify = oldWidget.count != count;
-    print('InheritedWidget::updateShouldNotify:$updateShouldNotify');
+    print('InheritedWidget.updateShouldNotify:$updateShouldNotify');
     return updateShouldNotify;
   }
 }
